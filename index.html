@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hypertension Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hypertension Severity & Stage Prediction</h1>
+
+        {% if severity and stages %}
+            <!-- Prediction Result Section -->
+            <div class="result">
+                <h2>Prediction Results</h2>
+                <p><strong>Severity:</strong> {{ severity }}</p>
+                <p><strong>Stages:</strong> {{ stages }}</p>
+                <button onclick="window.history.back();">Back</button>
+            </div>
+        {% else %}
+            <!-- Form Section -->
+            <form action="/predict" method="POST">
+                <div class="form-grid">
+                    <!-- Column 1 -->
+                    <div class="form-column">
+                        <label>Sex</label>
+                        <select name="C" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+
+                        <label>Age</label>
+                        <select name="Age" required>
+                            <option value="">Select Age Range</option>
+                            <option value="0-18">0-18</option>
+                            <option value="19-30">19-30</option>
+                            <option value="31-50">31-50</option>
+                            <option value="51-64">51-64</option>
+                            <option value="65+">65+</option>
+                        </select>
+
+                        <label>History</label>
+                        <select name="History" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                        <label>Patient</label>
+                        <select name="Patient" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                        <label>Take Medication</label>
+                        <select name="TakeMedication" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                        <label>Breath Shortness</label>
+                        <select name="BreathShortness" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                        <label>Visual Changes</label>
+                        <select name="VisualChanges" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="form-column">
+                        <label>Nose Bleeding</label>
+                        <select name="NoseBleeding" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+
+                        <label>When Diagnosed</label>
+                        <select name="Whendiagnoused" required>
+                            <option value="">Select</option>
+                            <option value="Recently">Recently</option>
+                            <option value="1-2 years">1-2 years</option>
+                            <option value="3-5 years">3-5 years</option>
+                            <option value=">5 years">More than 5 years</option>
+                        </select>
+
+                        <label>Systolic (mmHg)</label>
+                        <input type="number" name="Systolic" min="50" max="250" required>
+
+                        <label>Diastolic (mmHg)</label>
+                        <input type="number" name="Diastolic" min="30" max="150" required>
+
+                        <label>Controlled Diet</label>
+                        <select name="ControlledDiet" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit">Predict</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
